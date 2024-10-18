@@ -1,0 +1,12 @@
+<?php
+
+namespace App\Services\{{folder}};
+
+class {{class}}
+{
+    protected $repo;
+    public function __construct(YourInterface $repo)
+    {
+        $this->repo = $repo;
+    }
+}

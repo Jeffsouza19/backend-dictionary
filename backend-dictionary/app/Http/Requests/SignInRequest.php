@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Exceptions\GeneralJsonException;
+use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SignInRequest extends FormRequest
@@ -11,18 +14,28 @@ class SignInRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
-            //
+            'email' => 'required|email',
+            'password' => 'required'
         ];
+    }
+
+    /**
+     * @param Validator $validator
+     * @throws GeneralJsonException
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        throw new GeneralJsonException($validator->errors()->toJson(), 422, true);
     }
 }
