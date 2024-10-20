@@ -16,7 +16,7 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::group([
-    'middleware' => 'auth:sanctum',
+//    'middleware' => 'auth:sanctum',
     'prefix' => 'entries/en'
 ], function () {
     Route::get('/', [DictionaryController::class, 'list']);
