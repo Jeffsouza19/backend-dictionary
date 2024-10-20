@@ -6,7 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ListWordsPaginateResource extends JsonResource
+class UserWordResource extends JsonResource
 {
 
     public function __construct($resource)
@@ -21,10 +21,12 @@ class ListWordsPaginateResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+
         $data = $this->resource['paginate']->toArray();
-        $words = $this->organizeWords($data['data']);
+
+        $histories = $this->organizeHistory($data['data']);
         return [
-            "results" => $words,
+            "results" => $histories,
             "totalDocs" => $this->resource['count'],
             "previous" => $data['prev_cursor'],
             "next" => $data['next_cursor'],
@@ -39,13 +41,16 @@ class ListWordsPaginateResource extends JsonResource
         !empty($this->resource['cache']) ? $response->header('x-cache', 'HIT') : $response->header('x-cache', 'MISS');
     }
 
-    protected function organizeWords($arrWords): array
+    public function organizeHistory($data): array
     {
-        $words = [];
-        foreach ($arrWords as $word) {
-            $words[] = $word['word'];
-
+        $res = [];
+        foreach ($data as $each) {
+            $res[] = [
+                'word' => $each['word']['word'],
+                'added' => $each['created_at'],
+            ];
         }
-        return $words;
+
+        return $res;
     }
 }

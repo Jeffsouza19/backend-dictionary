@@ -34,7 +34,14 @@ class WordEloquent implements WordInterface
             })
             ->orderBy('word')
             ->cursorPaginate($limit);
-        $count = $this->model->newQuery()->count();
+
+        $count = $this
+            ->model
+            ->newQuery()
+            ->when($search, function ($query, $search) {
+                $query->where('word', 'like', $search . '%');
+            })
+            ->count();
         return compact('paginate', 'count');
     }
 

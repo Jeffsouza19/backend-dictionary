@@ -13,7 +13,9 @@ return Application::configure(basePath: dirname(__DIR__))
         apiPrefix: ''
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->use([
+            \App\Http\Middleware\RequestTime::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

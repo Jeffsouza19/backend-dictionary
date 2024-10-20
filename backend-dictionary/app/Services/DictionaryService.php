@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\Interfaces\User\UserFavoriteInterface;
+use App\Repositories\Interfaces\User\UserHistoryInterface;
 use App\Repositories\Interfaces\Word\WordInterface;
 use App\Services\Api\FreeDictionaryService;
 use GuzzleHttp\Exception\GuzzleException;
@@ -12,18 +13,32 @@ class DictionaryService
 {
     protected WordInterface $repo;
     protected UserFavoriteInterface $userFavoriteRepo;
+    protected UserHistoryInterface $userHistoryRepo;
 
-    public function __construct(WordInterface $repo, UserFavoriteInterface $userFavorite)
+    public function __construct(
+        WordInterface $repo,
+        UserFavoriteInterface $userFavorite,
+        UserHistoryInterface $userHistory
+    )
     {
         $this->repo = $repo;
         $this->userFavoriteRepo = $userFavorite;
+        $this->userHistoryRepo = $userHistory;
     }
 
     public function getWords()
     {
         $req = request()->only('search', 'limit');
-        return $this->repo->getAll($req['search'], $req['limit']??20);
+        $cachedWords = Cache::get($req['search'] . '/' . $req['limit']);
 
+        if ($cachedWords){
+            return $cachedWords;
+        }
+
+        $words = $this->repo->getAll($req['search'], $req['limit']??20);
+
+        Cache::put($req['search'] . '/' . $req['limit'], $words);
+        return $words;
     }
 
     /**
@@ -52,6 +67,9 @@ class DictionaryService
         $wordDefinition = $this->organizeWords($data);
 
         Cache::put($word, $wordDefinition, 60);
+
+        $this->setHistoryWord($word);
+
         return $wordDefinition;
     }
 
@@ -60,6 +78,7 @@ class DictionaryService
         $user = auth()->user();
         $objWord = $this->repo->getOne($word);
         $res = $this->userFavoriteRepo->setFavorite($user, $objWord);
+        Cache::forget('favorite');
 
         return [
             'word' => $objWord['word'],
@@ -71,9 +90,17 @@ class DictionaryService
     {
         $user = auth()->user();
         $objWord = $this->repo->getOne($word);
-        $res = $this->userFavoriteRepo->destroy($user, $objWord);
-
+        $this->userFavoriteRepo->destroy($user, $objWord);
+        Cache::forget('favorite');
         return [];
+    }
+
+    public function setHistoryWord($word): void
+    {
+        $user = auth()->user();
+        $objWord = $this->repo->getOne($word);
+        $this->userHistoryRepo->store($user, $objWord);
+        Cache::forget('history');
     }
 
     protected function organizeWords($word): array

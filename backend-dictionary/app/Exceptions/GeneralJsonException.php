@@ -10,7 +10,7 @@ use Throwable;
 class GeneralJsonException extends Exception
 {
 
-    protected $code = 422;
+    protected $code = 400;
     protected bool $decode;
     public function __construct(string $message = "", int $code = 0,  $decode = false,?Throwable $previous = null)
     {

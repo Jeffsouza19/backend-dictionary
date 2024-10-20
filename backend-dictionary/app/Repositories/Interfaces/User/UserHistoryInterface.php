@@ -4,16 +4,15 @@ namespace App\Repositories\Interfaces\User;
 
 use Illuminate\Database\Eloquent\Model;
 
-interface UserFavoriteInterface
+interface UserHistoryInterface
 {
     public function __construct(Model $model);
     public function getAll();
 
-    public function setFavorite($user, $word);
-    public function getOne($id);
+    public function store($user, $word);
+    public function getHistory($user, $limit);
 
     public function update($id, array $data);
 
-    public function destroy($user, $objWord);
-    public function getFavorite($user, $limit);
+    public function destroy($id);
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\GeneralJsonException;
+use App\Http\Resources\FavoriteResource;
 use App\Http\Resources\ListWordsPaginateResource;
 use App\Http\Resources\ShowWordResource;
 use App\Services\DictionaryService;
@@ -21,7 +22,7 @@ class DictionaryController extends Controller
         try {
             return new ListWordsPaginateResource($dictionaryService->getWords());
         }catch (\Exception $e){
-            throw new GeneralJsonException($e->getMessage(), min($e->getCode(), 500));
+            throw new GeneralJsonException($e->getMessage());
         }
     }
 
@@ -36,7 +37,22 @@ class DictionaryController extends Controller
         try {
             return new ShowWordResource($dictionaryService->getWord($word));
         }catch (GuzzleException $e) {
-            throw new GeneralJsonException($e->getResponse()->getBody()->getContents(), min($e->getCode(), 500), true);
+            throw new GeneralJsonException($e->getResponse()->getBody()->getContents(), decode: true);
+        }catch (\Exception $e){
+            throw new GeneralJsonException($e->getMessage());
+        }
+    }
+
+    /**
+     * @param DictionaryService $dictionaryService
+     * @param string $word
+     * @return JsonResponse
+     * @throws GeneralJsonException
+     */
+    public function favorite(DictionaryService $dictionaryService, string $word): FavoriteResource
+    {
+        try {
+            return new FavoriteResource($dictionaryService->setFavoriteWord($word));
         }catch (\Exception $e){
             throw new GeneralJsonException($e->getMessage(), min($e->getCode(), 500));
         }
@@ -48,25 +64,10 @@ class DictionaryController extends Controller
      * @return JsonResponse
      * @throws GeneralJsonException
      */
-    public function favorite(DictionaryService $dictionaryService, string $word): JsonResponse
+    public function unfavorite(DictionaryService $dictionaryService, string $word): FavoriteResource
     {
         try {
-            return response()->json($dictionaryService->setFavoriteWord($word));
-        }catch (\Exception $e){
-            throw new GeneralJsonException($e->getMessage(), min($e->getCode(), 500));
-        }
-    }
-
-    /**
-     * @param DictionaryService $dictionaryService
-     * @param string $word
-     * @return JsonResponse
-     * @throws GeneralJsonException
-     */
-    public function unfavorite(DictionaryService $dictionaryService, string $word): JsonResponse
-    {
-        try {
-            return response()->json($dictionaryService->removeFavoriteWord($word));
+            return new FavoriteResource($dictionaryService->removeFavoriteWord($word));
         }catch (\Exception $e){
             throw new GeneralJsonException($e->getMessage(), min($e->getCode(), 500));
         }

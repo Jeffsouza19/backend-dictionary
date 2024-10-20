@@ -47,4 +47,17 @@ class UserFavoriteEloquent implements UserFavoriteInterface
         ])->delete();
     }
 
+    public function getFavorite($user, $limit): array
+    {
+        $paginate = $this
+            ->model
+            ->newQuery()
+            ->with(['word'])
+            ->where('user_id', '=', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->cursorPaginate($limit);
+        $count = $this->model->newQuery()->count();
+        return compact('paginate', 'count');
+    }
+
 }

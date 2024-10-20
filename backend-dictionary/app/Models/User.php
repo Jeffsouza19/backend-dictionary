@@ -33,6 +33,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
+        'email_verified_at',
         'remember_token',
     ];
 
@@ -49,12 +50,12 @@ class User extends Authenticatable
         ];
     }
 
-    public function favorite(): HasMany
+    public function favorites(): HasMany
     {
         return $this->hasMany(UserFavoriteWord::class, 'user_id', 'id');
     }
 
-    public function history(): HasMany
+    public function histories(): HasMany
     {
         return $this->hasMany(UserHistoryWord::class, 'user_id', 'id');
     }

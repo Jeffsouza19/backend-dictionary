@@ -19,11 +19,11 @@ class UserHistoryWord extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function word(): BelongsTo
     {
-        return $this->belongsTo(Word::class, 'id', 'word_id');
+        return $this->belongsTo(Word::class, 'word_id', 'id');
     }
 }
