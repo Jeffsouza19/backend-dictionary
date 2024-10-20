@@ -24,11 +24,18 @@ class WordEloquent implements WordInterface
         $this->model = $model;
     }
 
-    public function getAll(): array
+    public function getAll($search, $limit): array
     {
-         $paginate = $this->model->newQuery()->orderBy('word')->cursorPaginate(20);
-         $count = $this->model->newQuery()->count();
-         return compact('paginate', 'count');
+        $paginate = $this
+            ->model
+            ->newQuery()
+            ->when($search, function ($query, $search) {
+                $query->where('word', 'like', $search . '%');
+            })
+            ->orderBy('word')
+            ->cursorPaginate($limit);
+        $count = $this->model->newQuery()->count();
+        return compact('paginate', 'count');
     }
 
     public function createWord($word, $newWord)

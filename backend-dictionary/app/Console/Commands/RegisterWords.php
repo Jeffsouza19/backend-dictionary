@@ -33,11 +33,10 @@ class RegisterWords extends Command
         $keys = array_keys($dataArray);
 
         foreach ($keys as $key) {
-//            $word = new Word();
-//            $word->word = $key;
-//            $word->save();
-
-            Word::query()->create(['word' => $key]);
+            Word::query()->updateOrInsert([
+                'word' => $key,
+                'created_at' => now()
+            ]);
         }
 
     }

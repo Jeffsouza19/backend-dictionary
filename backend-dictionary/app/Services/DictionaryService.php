@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Repositories\Interfaces\User\UserFavoriteInterface;
 use App\Repositories\Interfaces\Word\WordInterface;
 use App\Services\Api\FreeDictionaryService;
 use GuzzleHttp\Exception\GuzzleException;
@@ -10,15 +11,18 @@ use Illuminate\Support\Facades\Cache;
 class DictionaryService
 {
     protected WordInterface $repo;
+    protected UserFavoriteInterface $userFavoriteRepo;
 
-    public function __construct(WordInterface $repo)
+    public function __construct(WordInterface $repo, UserFavoriteInterface $userFavorite)
     {
         $this->repo = $repo;
+        $this->userFavoriteRepo = $userFavorite;
     }
 
     public function getWords()
     {
-        return $this->repo->getAll();
+        $req = request()->only('search', 'limit');
+        return $this->repo->getAll($req['search'], $req['limit']??20);
 
     }
 
@@ -29,67 +33,101 @@ class DictionaryService
     {
         $cachedWord = Cache::get($word);
 
-//        if ($cachedWord){
-//            return $cachedWord;
-//        }
+        if ($cachedWord){
+            return $cachedWord;
+        }
 
-        $apiService = new FreeDictionaryService();
         $newWord = null;
         $data = $this->repo->getOne($word);
 
         if (!$data || count($data->phonetics()->get()) == 0) {
+            $apiService = new FreeDictionaryService();
             $newWord = $apiService->getDictionaryWord($word);
         }
-dd($newWord);
+
         if ($newWord){
             $data = $this->repo->createWord($data, $newWord);
         }
 
+        $wordDefinition = $this->organizeWords($data);
 
-
-//        Cache::put($word, $newWord);
-        return $data;
+        Cache::put($word, $wordDefinition, 60);
+        return $wordDefinition;
     }
 
-    protected function organizeWords($arrWords)
+    public function setFavoriteWord(string $word)
     {
-        $newWord = [];
-        foreach ($arrWords as $each) {
-            $data = $this->objectToArray($each);
-            $newWord['word'] = $each->word;
-            $newWord['phonetic'] = $each->phonetic;
-            foreach ($each->phonetics as $k => $each_phonetic) {
-                $newWord['phonetics'][$k] = [
-                    'text' => $each_phonetic->text,
-                    'audio' => $each_phonetic->audio,
-                    'sourceUrl' => $each_phonetic->sourceUrl,
-                    'license' => [
-                        'name' => $each_phonetic->license->name,
-                        'url' => $each_phonetic->license->url,
-                    ],
-                ];
-            }
-            foreach ($each->meanings as $k => $each_meaning) {
-                $newWord['meanings'][$k] = [
-                    'partOfSpeech' => $each_meaning->partOfSpeech,
-                    'definition' => []
-                ];
-                foreach ($each_meaning->definitions as $each_meaningDefinition) {
+        $user = auth()->user();
+        $objWord = $this->repo->getOne($word);
+        $res = $this->userFavoriteRepo->setFavorite($user, $objWord);
 
-                    $newWord['meanings'][$k]['definitions'][] = [
-                        'definition' => $each_meaningDefinition->definition,
-                        'synonyms' => [],
-                        'antonyms' => [],
-                        'example' => $each_meaningDefinition->example ?? null,
-                    ];
-//                    dd($newWord, $each_meaningDefinition, $each_meaning, $each_meaningDefinition);
+        return [
+            'word' => $objWord['word'],
+            'added' => $res['created_at'],
+        ];
+    }
+
+    public function removeFavoriteWord(string $word)
+    {
+        $user = auth()->user();
+        $objWord = $this->repo->getOne($word);
+        $res = $this->userFavoriteRepo->destroy($user, $objWord);
+
+        return [];
+    }
+
+    protected function organizeWords($word): array
+    {
+        $wordPhonetics = $word->phonetics()->get();
+        foreach ($wordPhonetics as $wordPhonetic) {
+            $wordPhonetic['license'] = $wordPhonetic->licenses()->get()->toArray();
+        }
+
+        $wordMeanings = $word->meanings()->get();
+        foreach ($wordMeanings as $k => $wordMeaning) {
+            $wordMeaningDefinitions = $wordMeaning->definitions()->get();
+            $wordMeanings[$k]['definition'] = $wordMeaning->definitions()->get();
+            $synonyms = $wordMeaning->synonyms()->get()->toArray();
+            $antonyms = $wordMeaning->antonyms()->get()->toArray();
+
+            foreach ($synonyms as $i => $synonym) {
+                $wordMeanings[$k]['synonyms'][$i] = $synonym['synonym'];
+            }
+
+            foreach ($antonyms as $i => $antonym) {
+                $wordMeanings[$k]['antonyms'][$i] = $antonym['antonym'];
+            }
+
+            foreach ($wordMeaningDefinitions as $i => $wordMeaningDefinition) {
+
+                $defiSynonyms = $wordMeaningDefinition->synonyms()->get()->toArray();
+                $defiAntonyms = $wordMeaningDefinition->antonyms()->get()->toArray();
+                $resAntonyms = [];
+                $resSynonyms = [];
+                foreach ($defiAntonyms as $defiAntonym) {
+                    $resAntonyms[] = $defiAntonym['antonym'];
+                }
+                foreach ($defiSynonyms as $defiSynonym) {
+                    $resSynonyms[] = $defiSynonym['synonym'];
                 }
 
-//                dd($each_meaning);
+                $wordMeanings[$k]['definition'][$i]['synonyms'] = $resSynonyms;
+                $wordMeanings[$k]['definition'][$i]['antonyms'] = $resAntonyms;
+
             }
-//            dd($each, $newWord);
+
         }
-        dd($arrWords, $newWord);
+
+        $wordLicenses = $word->licenses()->get()->toArray();
+
+        return [
+            'word' => $word['word'],
+            'phonetic' => $word['phonetic'],
+            'phonetics' => $wordPhonetics->toArray(),
+            'meanings' => $wordMeanings->toArray(),
+            'license' => $wordLicenses,
+
+        ];
     }
 
 }

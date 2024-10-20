@@ -17,6 +17,13 @@ class WordMeaningSynonym extends Model
         'synonym'
     ];
 
+    protected $hidden = [
+        'word_meaning_id',
+        'id',
+        'created_at',
+        'updated_at'
+    ];
+
     public function meaning(): BelongsTo
     {
         return $this->belongsTo(WordMeaning::class, 'id', 'word_meaning_id');

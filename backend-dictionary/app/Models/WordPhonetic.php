@@ -22,6 +22,13 @@ class WordPhonetic extends Model
         'sourceUrl'
     ];
 
+    protected $hidden = [
+        'word_id',
+        'id',
+        'created_at',
+        'updated_at'
+    ];
+
     public function word(): BelongsTo
     {
         return $this->belongsTo(Word::class, 'word_id');

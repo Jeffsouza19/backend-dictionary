@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Models\UserFavoriteWord;
 use App\Models\Word;
 use App\Repositories\Eloquents\User\UserEloquent;
+use App\Repositories\Eloquents\User\UserFavoriteEloquent;
 use App\Repositories\Eloquents\Word\WordEloquent;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
@@ -24,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Interfaces\Word\WordInterface', 'App\Repositories\Eloquents\Word\WordEloquent');
         $this->app->bind('App\Repositories\Interfaces\Word\WordInterface', function () {
             return new WordEloquent(new Word());
+        });
+
+        $this->app->bind('App\Repositories\Interfaces\User\UserFavoriteInterface', 'App\Repositories\Eloquents\User\UserFavoriteEloquent');
+        $this->app->bind('App\Repositories\Interfaces\User\UserFavoriteInterface', function () {
+            return new UserFavoriteEloquent(new UserFavoriteWord());
         });
     }
 

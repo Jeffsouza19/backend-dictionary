@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('word_phonetics', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Word::class, 'word_id')->constrained();
-            $table->string('text');
+            $table->string('text')->nullable();
             $table->string('audio')->nullable();
             $table->string('sourceUrl')->nullable();
             $table->timestamps();

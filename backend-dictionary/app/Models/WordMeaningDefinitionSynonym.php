@@ -17,6 +17,13 @@ class WordMeaningDefinitionSynonym extends Model
         'synonym',
     ];
 
+    protected $hidden = [
+        "id",
+        "word_meaning_definition_id",
+        "created_at",
+        "updated_at",
+    ];
+
 
     public function definition(): BelongsTo
     {

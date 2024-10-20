@@ -18,6 +18,13 @@ class WordPhoneticLicense extends Model
         'url'
     ];
 
+    protected $hidden = [
+        'word_phonetic_id',
+        'id',
+        'created_at',
+        'updated_at'
+    ];
+
     public function license(): BelongsTo
     {
         return $this->belongsTo(WordPhoneticLicense::class, 'id', 'word_phonetic_id');
