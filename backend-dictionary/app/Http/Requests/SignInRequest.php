@@ -36,6 +36,6 @@ class SignInRequest extends FormRequest
      */
     protected function failedValidation(Validator $validator)
     {
-        throw new GeneralJsonException($validator->errors()->toJson(), 422, true);
+        throw new GeneralJsonException($validator->errors()->toJson(), decode: true);
     }
 }

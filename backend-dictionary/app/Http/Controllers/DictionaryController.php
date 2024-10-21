@@ -10,12 +10,20 @@ use App\Services\DictionaryService;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\JsonResponse;
 
+/**
+ * @group Dictionary Routes
+ */
 class DictionaryController extends Controller
 {
     /**
+     * List Words Route
+     *
      * @param DictionaryService $dictionaryService
      * @return ListWordsPaginateResource
      * @throws GeneralJsonException
+     * @response 200 { "results": [ "histoblast", "histochemic", "histochemical" ], "totalDocs": 117, "previous": null, "next": "eyJ3b3JkIjoiaGlzdG9jaGVtaWNhbCIsIl9wb2ludHNUb05leHRJdGVtcyI6dHJ1ZX0", "hasNext": true, "hasPrev": false }
+     * @queryParam limit int Limit words to search
+     * @queryParam search string Search words
      */
     public function list(DictionaryService $dictionaryService): ListWordsPaginateResource
     {
@@ -27,10 +35,14 @@ class DictionaryController extends Controller
     }
 
     /**
+     * View Word definitions Route
+     *
      * @param DictionaryService $dictionaryService
      * @param string $word
      * @return ShowWordResource
      * @throws GeneralJsonException
+     * @response 200 { "word": "hi", "phonetic": "/haɪ/", "phonetics": [ { "text": "/haɪ/", "audio": "https://api.dictionaryapi.dev/media/pronunciations/en/hi-1-uk.mp3", "sourceUrl": "https://commons.wikimedia.org/w/index.php?curid=9021999", "license": [ { "name": "BY 3.0 US", "url": "https://creativecommons.org/licenses/by/3.0/us" } ] }, ], "meanings": [ { "partOfSpeech": "noun", "definition": [ { "definition": "The word \"hi\" used as a greeting.", "example": "I didn't even get a hi.", "synonyms": [], "antonyms": [] } ], "synonyms": [ "greeting", "hello" ] } ], "license": [ { "id": 18, "word_id": 138128, "name": "CC BY-SA 3.0", "url": "https://creativecommons.org/licenses/by-sa/3.0", "created_at": "2024-10-20T16:20:36.000000Z", "updated_at": "2024-10-20T16:20:36.000000Z" }, { "id": 19, "word_id": 138128, "name": "CC BY-SA 3.0", "url": "https://creativecommons.org/licenses/by-sa/3.0", "created_at": "2024-10-20T16:20:36.000000Z", "updated_at": "2024-10-20T16:20:36.000000Z" } ] }
+     * @response 400 { "errors": { "message": { "title": "No Definitions Found", "message": "Sorry pal, we couldn't find definitions for the word you were looking for.", "resolution": "You can try the search again at later time or head to the web instead." } } }
      */
     public function view(DictionaryService $dictionaryService, string $word): ShowWordResource
     {
@@ -44,10 +56,13 @@ class DictionaryController extends Controller
     }
 
     /**
+     * Set Favorite Word Route
+     *
      * @param DictionaryService $dictionaryService
      * @param string $word
-     * @return JsonResponse
+     * @return FavoriteResource
      * @throws GeneralJsonException
+     * @response 200 { "word": "aa", "added": "2024-10-20T17:04:28.000000Z" }
      */
     public function favorite(DictionaryService $dictionaryService, string $word): FavoriteResource
     {
@@ -59,15 +74,17 @@ class DictionaryController extends Controller
     }
 
     /**
+     * Unset Favorite Word Route
      * @param DictionaryService $dictionaryService
      * @param string $word
      * @return JsonResponse
      * @throws GeneralJsonException
+     * @response 204
      */
-    public function unfavorite(DictionaryService $dictionaryService, string $word): FavoriteResource
+    public function unfavorite(DictionaryService $dictionaryService, string $word): JsonResponse
     {
         try {
-            return new FavoriteResource($dictionaryService->removeFavoriteWord($word));
+            return response()->json([])->setStatusCode(204);
         }catch (\Exception $e){
             throw new GeneralJsonException($e->getMessage(), min($e->getCode(), 500));
         }

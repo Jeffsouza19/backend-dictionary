@@ -9,9 +9,14 @@ use App\Services\UserService;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
+/**
+ * @group User Routes
+ */
 class UserController extends Controller
 {
     /**
+     * Show User Profile Route
+     *
      * @return UserResource
      * @throws GeneralJsonException
      */
