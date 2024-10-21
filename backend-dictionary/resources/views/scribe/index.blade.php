@@ -229,10 +229,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-dictionary-routes-GETentries-en">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="List Route">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="List Words Route">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#dictionary-routes-GETentries-en">
-                                                    List Route
+                                                    List Words Route
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -253,10 +253,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-dictionary-routes-POSTentries-en--word--favorite">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Set Favorite Words Route">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Set Favorite Word Route">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#dictionary-routes-POSTentries-en--word--favorite">
-                                                    Set Favorite Words Route
+                                                    Set Favorite Word Route
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -265,10 +265,10 @@
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
                                              id="toc-item-dictionary-routes-DELETEentries-en--word--unfavorite">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Unset Favorite Word">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Unset Favorite Word Route">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
                                                    href="#dictionary-routes-DELETEentries-en--word--unfavorite">
-                                                    Unset Favorite Word
+                                                    Unset Favorite Word Route
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -305,13 +305,32 @@
                                                                                     </div>
 
                                                                             </div>
+                                                            </div>
+                                            </div>
+                                    <div class="expandable">
+                        <div title="User Routes" id="toc-item-user-routes"
+                             class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-4 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none">
+                            <a href="#user-routes"
+                               class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0">User Routes</a>
+                                                            <div class="sl-flex sl-items-center sl-text-xs expansion-chevrons">
+                                    <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                         data-icon="chevron-right"
+                                         class="svg-inline--fa fa-chevron-right fa-fw sl-icon sl-text-muted"
+                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                        <path fill="currentColor"
+                                              d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"></path>
+                                    </svg>
+                                </div>
+                                                    </div>
+
+                                                    <div class="children" style="display: none;">
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
-                                             id="toc-item-endpoints-GETuser-me">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET user/me">
+                                             id="toc-item-user-routes-GETuser-me">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Show User Profile Route">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
-                                                   href="#endpoints-GETuser-me">
-                                                    GET user/me
+                                                   href="#user-routes-GETuser-me">
+                                                    Show User Profile Route
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -319,10 +338,10 @@
                                                                             </div>
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
-                                             id="toc-item-endpoints-GETuser-me-history">
+                                             id="toc-item-user-routes-GETuser-me-history">
                                             <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET user/me/history">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
-                                                   href="#endpoints-GETuser-me-history">
+                                                   href="#user-routes-GETuser-me-history">
                                                     GET user/me/history
                                                 </a>
                                             </div>
@@ -331,10 +350,10 @@
                                                                             </div>
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
-                                             id="toc-item-endpoints-GETuser-me-favorites">
+                                             id="toc-item-user-routes-GETuser-me-favorites">
                                             <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET user/me/favorites">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
-                                                   href="#endpoints-GETuser-me-favorites">
+                                                   href="#user-routes-GETuser-me-favorites">
                                                     GET user/me/favorites
                                                 </a>
                                             </div>
@@ -502,7 +521,7 @@ You can switch the language used with the tabs at the top right (or from the nav
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        paul.larkin@example.net
+                        buddy.orn@example.org
                     </div>
                 </div>
             </div>
@@ -526,7 +545,7 @@ You can switch the language used with the tabs at the top right (or from the nav
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        et
+                        sit
                     </div>
                 </div>
             </div>
@@ -569,8 +588,8 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"paul.larkin@example.net\",
-    \"password\": \"et\"
+    \"email\": \"buddy.orn@example.org\",
+    \"password\": \"sit\"
 }"
 </code></pre>                                        </div>
                                     </div>
@@ -589,8 +608,8 @@ const headers = {
 };
 
 let body = {
-    "email": "paul.larkin@example.net",
-    "password": "et"
+    "email": "buddy.orn@example.org",
+    "password": "sit"
 };
 
 fetch(url, {
@@ -614,8 +633,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'email' =&gt; 'paul.larkin@example.net',
-            'password' =&gt; 'et',
+            'email' =&gt; 'buddy.orn@example.org',
+            'password' =&gt; 'sit',
         ],
     ]
 );
@@ -789,7 +808,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        totam
+                        facere
                     </div>
                 </div>
             </div>
@@ -816,7 +835,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        warren86@example.net
+                        heller.rachel@example.org
                     </div>
                 </div>
             </div>
@@ -840,7 +859,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        a
+                        architecto
                     </div>
                 </div>
             </div>
@@ -883,9 +902,9 @@ print_r(json_decode((string) $body));</code></pre>                              
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"totam\",
-    \"email\": \"warren86@example.net\",
-    \"password\": \"a\"
+    \"name\": \"facere\",
+    \"email\": \"heller.rachel@example.org\",
+    \"password\": \"architecto\"
 }"
 </code></pre>                                        </div>
                                     </div>
@@ -904,9 +923,9 @@ const headers = {
 };
 
 let body = {
-    "name": "totam",
-    "email": "warren86@example.net",
-    "password": "a"
+    "name": "facere",
+    "email": "heller.rachel@example.org",
+    "password": "architecto"
 };
 
 fetch(url, {
@@ -930,9 +949,9 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'totam',
-            'email' =&gt; 'warren86@example.net',
-            'password' =&gt; 'a',
+            'name' =&gt; 'facere',
+            'email' =&gt; 'heller.rachel@example.org',
+            'password' =&gt; 'architecto',
         ],
     ]
 );
@@ -1014,7 +1033,7 @@ print_r(json_decode((string) $body));</code></pre>                              
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="dictionary-routes-GETentries-en">
-                    List Route
+                    List Words Route
                 </h2>
             </div>
         </div>
@@ -1131,7 +1150,29 @@ print_r(json_decode((string) $body));</code></pre>                              
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        16
+                        2
+                    </div>
+                </div>
+            </div>
+            </div>
+</div>
+                                                                            <div class="sl-flex sl-relative sl-max-w-full sl-py-2 sl-pl-3">
+    <div class="sl-w-1 sl-mt-2 sl-mr-3 sl--ml-3 sl-border-t"></div>
+    <div class="sl-stack sl-stack--vertical sl-stack--1 sl-flex sl-flex-1 sl-flex-col sl-items-stretch sl-max-w-full sl-ml-2 ">
+        <div class="sl-flex sl-items-center sl-max-w-full">
+                                        <div class="sl-flex sl-items-baseline sl-text-base">
+                    <div class="sl-font-mono sl-font-semibold sl-mr-2">search</div>
+                                            <span class="sl-truncate sl-text-muted">string</span>
+                                    </div>
+                                    </div>
+                <div class="sl-prose sl-markdown-viewer" style="font-size: 12px;">
+            <p>Search words</p>
+        </div>
+                                            <div class="sl-stack sl-stack--horizontal sl-stack--2 sl-flex sl-flex-row sl-items-baseline sl-text-muted">
+                <span>Example:</span> <!-- <span> important for spacing -->
+                <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
+                    <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
+                        non
                     </div>
                 </div>
             </div>
@@ -1169,7 +1210,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                     <div class="sl-px-0 sl-py-1">
                                         <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/entries/en?limit=16" \
+    --get "http://localhost/entries/en?limit=2&amp;search=non" \
     --header "Authorization: Bearer {YOUR_AUTH_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
@@ -1184,7 +1225,8 @@ print_r(json_decode((string) $body));</code></pre>                              
 );
 
 const params = {
-    "limit": "16",
+    "limit": "2",
+    "search": "non",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -1216,7 +1258,8 @@ $response = $client-&gt;get(
             'Accept' =&gt; 'application/json',
         ],
         'query' =&gt; [
-            'limit' =&gt; '16',
+            'limit' =&gt; '2',
+            'search' =&gt; 'non',
         ],
     ]
 );
@@ -1398,7 +1441,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        suscipit
+                        cupiditate
                     </div>
                 </div>
             </div>
@@ -1438,7 +1481,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                     <div class="sl-px-0 sl-py-1">
                                         <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/entries/en/suscipit" \
+    --get "http://localhost/entries/en/cupiditate" \
     --header "Authorization: Bearer {YOUR_AUTH_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
@@ -1449,7 +1492,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                     <div class="sl-px-0 sl-py-1">
                                         <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/entries/en/suscipit"
+    "http://localhost/entries/en/cupiditate"
 );
 
 const headers = {
@@ -1469,7 +1512,7 @@ fetch(url, {
                                     <div class="sl-px-0 sl-py-1">
                                         <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost/entries/en/suscipit';
+$url = 'http://localhost/entries/en/cupiditate';
 $response = $client-&gt;get(
     $url,
     [
@@ -1550,7 +1593,7 @@ print_r(json_decode((string) $body));</code></pre>                              
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="dictionary-routes-POSTentries-en--word--favorite">
-                    Set Favorite Words Route
+                    Set Favorite Word Route
                 </h2>
             </div>
         </div>
@@ -1664,7 +1707,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        sequi
+                        officiis
                     </div>
                 </div>
             </div>
@@ -1704,7 +1747,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                     <div class="sl-px-0 sl-py-1">
                                         <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request POST \
-    "http://localhost/entries/en/sequi/favorite" \
+    "http://localhost/entries/en/officiis/favorite" \
     --header "Authorization: Bearer {YOUR_AUTH_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
@@ -1715,7 +1758,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                     <div class="sl-px-0 sl-py-1">
                                         <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/entries/en/sequi/favorite"
+    "http://localhost/entries/en/officiis/favorite"
 );
 
 const headers = {
@@ -1735,7 +1778,7 @@ fetch(url, {
                                     <div class="sl-px-0 sl-py-1">
                                         <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost/entries/en/sequi/favorite';
+$url = 'http://localhost/entries/en/officiis/favorite';
 $response = $client-&gt;post(
     $url,
     [
@@ -1802,7 +1845,7 @@ print_r(json_decode((string) $body));</code></pre>                              
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
                     id="dictionary-routes-DELETEentries-en--word--unfavorite">
-                    Unset Favorite Word
+                    Unset Favorite Word Route
                 </h2>
             </div>
         </div>
@@ -1916,7 +1959,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        qui
+                        possimus
                     </div>
                 </div>
             </div>
@@ -1956,7 +1999,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                     <div class="sl-px-0 sl-py-1">
                                         <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/entries/en/qui/unfavorite" \
+    "http://localhost/entries/en/possimus/unfavorite" \
     --header "Authorization: Bearer {YOUR_AUTH_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
@@ -1967,7 +2010,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                     <div class="sl-px-0 sl-py-1">
                                         <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/entries/en/qui/unfavorite"
+    "http://localhost/entries/en/possimus/unfavorite"
 );
 
 const headers = {
@@ -1987,7 +2030,7 @@ fetch(url, {
                                     <div class="sl-px-0 sl-py-1">
                                         <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost/entries/en/qui/unfavorite';
+$url = 'http://localhost/entries/en/possimus/unfavorite';
 $response = $client-&gt;delete(
     $url,
     [
@@ -2284,7 +2327,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                                                                                     content-type
                                                             : application/json
                                                                                                                     x-request-time
-                                                            : 3.3819675445557
+                                                            : 3.6530494689941
                                                          </code></pre>
                                             </details>
                                                                                                                                                                         
@@ -2299,13 +2342,21 @@ print_r(json_decode((string) $body));</code></pre>                              
     </div>
 </div>
 
-                    <div class="sl-stack sl-stack--vertical sl-stack--8 HttpOperation sl-flex sl-flex-col sl-items-stretch sl-w-full">
+                <h1 id="user-routes"
+        class="sl-text-5xl sl-leading-tight sl-font-prose sl-text-heading"
+    >
+        User Routes
+    </h1>
+
+    
+
+                                <div class="sl-stack sl-stack--vertical sl-stack--8 HttpOperation sl-flex sl-flex-col sl-items-stretch sl-w-full">
     <div class="sl-stack sl-stack--vertical sl-stack--5 sl-flex sl-flex-col sl-items-stretch">
         <div class="sl-relative">
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
-                    id="endpoints-GETuser-me">
-                    GET user/me
+                    id="user-routes-GETuser-me">
+                    Show User Profile Route
                 </h2>
             </div>
         </div>
@@ -2532,7 +2583,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                                                                                     content-type
                                                             : application/json
                                                                                                                     x-request-time
-                                                            : 11.264085769653
+                                                            : 8.5411071777344
                                                          </code></pre>
                                             </details>
                                                                                                                                                                         
@@ -2552,7 +2603,7 @@ print_r(json_decode((string) $body));</code></pre>                              
         <div class="sl-relative">
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
-                    id="endpoints-GETuser-me-history">
+                    id="user-routes-GETuser-me-history">
                     GET user/me/history
                 </h2>
             </div>
@@ -2780,7 +2831,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                                                                                     content-type
                                                             : application/json
                                                                                                                     x-request-time
-                                                            : 1.3689994812012
+                                                            : 0.67806243896484
                                                          </code></pre>
                                             </details>
                                                                                                                                                                         
@@ -2800,7 +2851,7 @@ print_r(json_decode((string) $body));</code></pre>                              
         <div class="sl-relative">
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
-                    id="endpoints-GETuser-me-favorites">
+                    id="user-routes-GETuser-me-favorites">
                     GET user/me/favorites
                 </h2>
             </div>
@@ -3028,7 +3079,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                                                                                     content-type
                                                             : application/json
                                                                                                                     x-request-time
-                                                            : 1.0480880737305
+                                                            : 0.72002410888672
                                                          </code></pre>
                                             </details>
                                                                                                                                                                         
