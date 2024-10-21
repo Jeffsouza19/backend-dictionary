@@ -6,6 +6,12 @@ use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+/**
+ * Fullstack Challenge 🏅 - Dictionary
+ *
+ * @group Welcome
+ * @response {"message": "Fullstack Challenge 🏅 - Dictionary"}
+ */
 Route::get('/', function (Request $request) {
     return response()->json(["message" => "Fullstack Challenge 🏅 - Dictionary"]);
 });
@@ -32,4 +38,8 @@ Route::group([
     Route::get('/', [UserController::class, 'me']);
     Route::get('/history', [UserController::class, 'history']);
     Route::get('/favorites', [UserController::class, 'favorites']);
+});
+
+Route::get('/401', function (){
+   return response()->json(["message" => "Unauthorized"], 401);
 });

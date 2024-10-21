@@ -50,6 +50,7 @@ class UserService
     {
         $cachedFavorite = Cache::get('favorite');
         if ($cachedFavorite) {
+            $cachedFavorite['cache'] = true;
             return $cachedFavorite;
         }
 

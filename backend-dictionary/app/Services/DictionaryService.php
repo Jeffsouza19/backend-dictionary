@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\GeneralJsonException;
 use App\Repositories\Interfaces\User\UserFavoriteInterface;
 use App\Repositories\Interfaces\User\UserHistoryInterface;
 use App\Repositories\Interfaces\Word\WordInterface;
@@ -29,15 +30,22 @@ class DictionaryService
     public function getWords()
     {
         $req = request()->only('search', 'limit');
-        $cachedWords = Cache::get($req['search'] . '/' . $req['limit']);
 
-        if ($cachedWords){
-            return $cachedWords;
+        if (!empty($req['search'])) {
+            $cachedWords = Cache::get($req['search'] . '/' . $req['limit']);
+
+            if ($cachedWords){
+                $cachedWords['cache'] = true;
+                return $cachedWords;
+            }
         }
 
-        $words = $this->repo->getAll($req['search'], $req['limit']??20);
+        $words = $this->repo->getAll($req['search']??"", $req['limit']??20);
 
-        Cache::put($req['search'] . '/' . $req['limit'], $words);
+        if (!empty($req['search'])) {
+            Cache::put($req['search'] . '/' . $req['limit'], $words);
+        }
+
         return $words;
     }
 
@@ -49,6 +57,7 @@ class DictionaryService
         $cachedWord = Cache::get($word);
 
         if ($cachedWord){
+            $cachedWord['cache'] = true;
             return $cachedWord;
         }
 

@@ -26,6 +26,7 @@ class WordEloquent implements WordInterface
 
     public function getAll($search, $limit): array
     {
+//        dd($search);
         $paginate = $this
             ->model
             ->newQuery()

@@ -34,7 +34,7 @@ return [
 
             // Exclude these routes even if they matched the rules above.
             'exclude' => [
-                 'GET /health', 'GET /sanctum/csrf-cookie', 'GET up', 'GET storage/{path}'
+                 'GET /health', 'GET /sanctum/csrf-cookie', 'GET up', 'GET storage/{path}', 'GET /401'
             ],
         ],
     ],

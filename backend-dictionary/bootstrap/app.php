@@ -15,7 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->use([
             \App\Http\Middleware\RequestTime::class
-        ]);
+        ])->redirectGuestsTo('/401');
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

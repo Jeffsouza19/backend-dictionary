@@ -24,13 +24,14 @@ class DictionaryController extends Controller
      * @response 200 { "results": [ "histoblast", "histochemic", "histochemical" ], "totalDocs": 117, "previous": null, "next": "eyJ3b3JkIjoiaGlzdG9jaGVtaWNhbCIsIl9wb2ludHNUb05leHRJdGVtcyI6dHJ1ZX0", "hasNext": true, "hasPrev": false }
      * @queryParam limit int Limit words to search
      * @queryParam search string Search words
+     * @response 400 { "errors": { "message": "An error occurred while retrieving list of words." } }
      */
     public function list(DictionaryService $dictionaryService): ListWordsPaginateResource
     {
         try {
             return new ListWordsPaginateResource($dictionaryService->getWords());
         }catch (\Exception $e){
-            throw new GeneralJsonException($e->getMessage());
+            throw new GeneralJsonException('An error occurred while retrieving list of words.');
         }
     }
 
@@ -51,7 +52,7 @@ class DictionaryController extends Controller
         }catch (GuzzleException $e) {
             throw new GeneralJsonException($e->getResponse()->getBody()->getContents(), decode: true);
         }catch (\Exception $e){
-            throw new GeneralJsonException($e->getMessage());
+            throw new GeneralJsonException('An error occurred when searching for the word, was the word typed correctly?');
         }
     }
 
@@ -63,30 +64,33 @@ class DictionaryController extends Controller
      * @return FavoriteResource
      * @throws GeneralJsonException
      * @response 200 { "word": "aa", "added": "2024-10-20T17:04:28.000000Z" }
+     * @response 400 { "errors": { "message": "An error occurred while favoriting the word" } }
      */
     public function favorite(DictionaryService $dictionaryService, string $word): FavoriteResource
     {
         try {
             return new FavoriteResource($dictionaryService->setFavoriteWord($word));
         }catch (\Exception $e){
-            throw new GeneralJsonException($e->getMessage(), min($e->getCode(), 500));
+            throw new GeneralJsonException('An error occurred while favoriting the word');
         }
     }
 
     /**
      * Unset Favorite Word Route
+     *
      * @param DictionaryService $dictionaryService
      * @param string $word
      * @return JsonResponse
      * @throws GeneralJsonException
      * @response 204
+     * @response 400 { "errors": { "message": "An error occurred to unfavorite the word" } }
      */
     public function unfavorite(DictionaryService $dictionaryService, string $word): JsonResponse
     {
         try {
             return response()->json([])->setStatusCode(204);
         }catch (\Exception $e){
-            throw new GeneralJsonException($e->getMessage(), min($e->getCode(), 500));
+            throw new GeneralJsonException('An error occurred to unfavorite the word');
         }
     }
 }
